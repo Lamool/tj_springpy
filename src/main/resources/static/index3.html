@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- http://localhost:8080/index3.html -->
+
+<h3>삼성전자 최근 1년 주가 내역</h3>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>일자</th> <th>종가</th> <th>대비</th> <th>등락률</th> <th>시가</th> <th>고가</th> <th>저가</th> <th>거래량</th> <th>거래대금</th> <th>시가총액</th> <th>상장주식수</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<!-- JQUERY -->
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+    // Flask 서버에 통신
+    $.ajax({
+        method : 'get',
+        url : "http://127.0.0.1:5000/samsung",
+        success : r => {    console.log(r);
+            let tbody = document.querySelector('tbody')
+            let html = ``;
+            r.forEach(o => {    // ((region.py 파일의 변수명과 동일해야 한다. 동일하지 않으면 undefined))
+                html += `
+                        <tr>
+                            <th>${o.date}</th> <th>${o.closingPrice}</th> <th>${o.contrast}</th> <th>${o.fluctuationRate}</th>
+                            <th>${o.marketPrice}</th> <th>${o.highPrice}</th> <th>${o.lowPrice}</th> <th>${o.tradingVolume}</th>
+                            <th>${o.transactionAmount}</th> <th>${o.marketCapitalization}</th> <th>${o.listedStocksNum}</th>
+                        `
+            });
+            tbody.innerHTML = html
+        }
+    })
+</script>
+
+</body>
+</html>

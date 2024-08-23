@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- http://localhost:8080/index1.html -->
+    <h3>파이썬에서 데이터 가져오기</h3>
+
+    <!-- JQUERY -->
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+        // Flask 서버에 통신
+        $.ajax({
+            method : 'get',
+            url : "http://127.0.0.1:5000",
+            success : r => {    console.log(r);
+            }
+        })
+    </script>
+
+</body>
+</html>

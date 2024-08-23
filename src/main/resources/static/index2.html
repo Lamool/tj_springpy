@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- http://localhost:8080/index2.html -->
+
+    <h3>인천시 부평구 인구 현황</h3>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>동명</th> <th>총인구수</th> <th>남성수</th> <th>여성수</th> <th>가구수</th> <th>남성비율</th> <th>여성비율</th> 
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <!-- JQUERY -->
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+        // Flask 서버에 통신
+        $.ajax({
+            method : 'get',
+            url : "http://127.0.0.1:5000",
+            success : r => {    console.log(r);
+                let tbody = document.querySelector('tbody')
+                let html = ``;
+                r.forEach(o => {    // ((region.py 파일의 변수명과 동일해야 한다. 동일하지 않으면 undefined))
+                    html += `
+                            <tr>
+                                <td>${o.name}</td> <td>${o.total}</td> <td>${o.male}</td> <td>${o.female}</td>
+                                <td>${o.house}</td> <td>${o.malePercent}%</td> <td>${o.femalePercent}%</td>
+                            </tr>
+                            `
+                });
+                tbody.innerHTML = html
+            }
+        })
+    </script>
+
+</body>
+</html>
