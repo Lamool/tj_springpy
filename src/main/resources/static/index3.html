@@ -21,7 +21,7 @@
 </table>
 
 <!-- JQUERY -->
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script>
     // Flask 서버에 통신
@@ -34,12 +34,13 @@
             r.forEach(o => {    // ((region.py 파일의 변수명과 동일해야 한다. 동일하지 않으면 undefined))
                 html += `
                         <tr>
-                            <th>${o.date}</th> <th>${o.closingPrice}</th> <th>${o.contrast}</th> <th>${o.fluctuationRate}</th>
-                            <th>${o.marketPrice}</th> <th>${o.highPrice}</th> <th>${o.lowPrice}</th> <th>${o.tradingVolume}</th>
-                            <th>${o.transactionAmount}</th> <th>${o.marketCapitalization}</th> <th>${o.listedStocksNum}</th>
+                            <td>${o.date}</td> <td>${o.closingPrice}</td> <td>${o.contrast}</td> <td>${o.fluctuationRate}</td>
+                            <td>${o.marketPrice}</td> <td>${o.highPrice}</td> <td>${o.lowPrice}</td> <td>${o.tradingVolume}</td>
+                            <td>${o.transactionAmount}</td> <td>${o.marketCapitalization}</td> <td>${o.listedStocksNum}</td>
+                        </tr>
                         `
             });
-            tbody.innerHTML = html
+            tbody.innerHTML = html;
         }
     })
 </script>
