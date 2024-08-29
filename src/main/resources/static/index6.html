@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- http://localhost:8080/index6.html -->
+
+<h3>잡코리아 채용 정보</h3>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>회사명</th> <th>공고명</th> <th>경력</th> <th>학력</th> <th>계약유형</th> <th>지역</th> <th>채용기간</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+<!-- JQUERY -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+    // Flask 서버에 통신
+    $.ajax({
+        async : false,
+        method : 'get',
+        url : "http://localhost:5000/apartment",
+        success : r => {    console.log(r);
+            let tbody = document.querySelector('tbody')
+            let html = ``;
+            r.forEach(채용 => {     // ((받아온 데이터의 키값과 동일해야 한다. 동일하지 않으면 undefined))
+                html += `
+                        <tr>
+                            <td>${채용.회사명}</td>
+                            <td>${채용.공고명}</td>
+                            <td>${채용.경력}</td>
+                            <td>${채용.학력}</td>
+                            <td>${채용.계약유형}</td>
+                            <td>${채용.지역}</td>
+                            <td>${채용.채용기간}</td>
+                        </tr>
+                        `
+            });
+            tbody.innerHTML = html;
+        }
+    })
+</script>
+
+</body>
+</html>
