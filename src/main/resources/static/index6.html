@@ -7,13 +7,11 @@
 <body>
 <!-- http://localhost:8080/index6.html -->
 
-<h3>잡코리아 채용 정보</h3>
+<h3>인천광역시 부평구 아파트전월세 통계</h3>
 
 <table border="1">
     <thead>
-    <tr>
-        <th>회사명</th> <th>공고명</th> <th>경력</th> <th>학력</th> <th>계약유형</th> <th>지역</th> <th>채용기간</th>
-    </tr>
+
     </thead>
     <tbody>
 
@@ -28,26 +26,60 @@
     $.ajax({
         async : false,
         method : 'get',
-        url : "http://localhost:5000/apartment",
-        success : r => {    console.log(r);
-            let tbody = document.querySelector('tbody')
-            let html = ``;
-            r.forEach(채용 => {     // ((받아온 데이터의 키값과 동일해야 한다. 동일하지 않으면 undefined))
-                html += `
-                        <tr>
-                            <td>${채용.회사명}</td>
-                            <td>${채용.공고명}</td>
-                            <td>${채용.경력}</td>
-                            <td>${채용.학력}</td>
-                            <td>${채용.계약유형}</td>
-                            <td>${채용.지역}</td>
-                            <td>${채용.채용기간}</td>
-                        </tr>
-                        `
-            });
-            tbody.innerHTML = html;
-        }
-    })
+        url : "http://localhost:5000/trans1",
+        success : response => {
+            // 1.
+                // 1-1. 테이블 제목
+            let thead = document.querySelector('thead');
+                // 1-2. 제목 구성
+            let html = `<tr>
+                            <th>NO</th> <th>건축년도</th> <th>계약년월</th>
+                            <th>계약일</th> <th>본번</th> <th>부번</th>
+                            <th>월세금(만원)</th> <th>전용면적(㎡)</th>
+                            <th>종전계약 월세(만원)</th> <th>층</th>
+                        </tr>`;
+                // 1-3. 대입
+            thead.innerHTML = html;
+
+            let tbody = document.querySelector('tbody');
+
+            // 한 줄만 출력
+            // let html2 = `<tr>
+            //                          <td>${response['NO']}</td>       // (([object Object]가 출력됨. 이거 X))       
+            //                 <td>${response['NO']['25%']}</td>
+            //                 <td>${response['건축년도']['25%']}</td>
+            //                 <td>${response['계약년월']['25%']}</td>
+            //                 <td>${response['계약일']['25%']}</td>
+            //                 <td>${response['본번']['25%']}</td>
+            //                 <td>${response['부번']['25%']}</td>
+            //                 <td>${response['월세금(만원)']['25%']}</td>
+            //                 <td>${response['전용면적(㎡)']['25%']}</td>
+            //                 <td>${response['종전계약 월세(만원)']['25%']}</td>
+            //                 <td>${response['층']['25%']}</td>
+            //             </tr>`;
+
+
+            tbody.innerHTML = html2;
+                            
+            // 2.
+            console.log(response);
+            console.log(Object.keys(response));        // JS에서 객체내 모든 키를 호출 : Object.keys(객체)
+            let resultKeys = Object.keys(response)
+            resultKeys.forEach(key => {
+                console.log(key)        // 통계에 사용되는 거래정보 필드명
+                console.log(response[`${key}`])     // 통계 필드의 값
+
+                keyValue = response[`${key}`]
+                console.log(Object.keys(keyValue))      // 통계 계산/항목 명 // ['25%', '50%', '75%', 'count', 'max', 'mean', 'min', 'std']
+                detailKeys = Object.keys(keyValue)
+                detailKeys.forEach(detailKey => {
+                    console.log(detailKey)
+                    console.log(keyValue[`${detailKey}`])
+                })
+            })
+    
+        }   // success end
+    })  // ajax end
 </script>
 
 </body>
