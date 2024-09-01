@@ -5,6 +5,253 @@
     <title>Title</title>
 </head>
 <body>
+    <!-- http://localhost:8080/index7.html -->
 
+    <h3> 행정동 단위 서울생활인구(내국인) 2024/08/25</h3>
+    <table border="1">
+        <thead class="totalInfoHead">
+
+        </thead>
+        <tbody class="totalInfo">
+
+        </tbody>
+    </table>
+
+    <h3> 전체 기술통계 </h3>
+    <table border="1">
+        <thead class="deHead">
+
+        </thead>
+        <tbody class="describeBox">
+
+        </tbody>
+    </table>
+
+    <h3> 시간대별 총 인구수 기술통계 </h3>
+    <table border="1">
+        <thead class="timeHead">
+
+        </thead>
+        <tbody class="timedescribeBox">
+
+        </tbody>
+    </table>
+
+    <h3> 시간대별 가장 인구수 많은 행정동 코드 </h3>
+    <table border="1">
+        <thead class="highest_population">
+        <tr>
+            <th> 시간대구분 </th> <th> 행정동코드 </th> <th> 총인구수 </th>
+        </tr>
+        </thead>
+        <tbody class="highestpopulationBox">
+
+        </tbody>
+    </table>
+
+    <h3> 행정동코드 별 남여 인구수 </h3>
+    <table border="1">
+        <thead></thead>
+        <tr>
+            <th> 행정동코드 </th> <th> 남 </th> <th> 여 </th> <th> 총인구수 </th>
+        </tr>
+        </thead>
+        <tbody class="male_female">
+
+        </tbody>
+    </table>
+
+    <!-- jquery 라이브러리 -->
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+
+        // 행정동 단위 서울생활인구(내국인)
+        $.ajax({
+            async : false ,
+            method : 'get' ,
+            url : "http://localhost:5000/total" ,
+            success : (r) => {
+                // console.log(r)
+                1.
+                let totalInfoHead = document.querySelector('.totalInfoHead') // 1-1 테이블 제목
+                     // 1-2 제목 구성
+
+                //console.log(r)
+                let responseKeys = Object.keys(r[0])
+                console.log(responseKeys)
+
+                let html = `<tr> <th> </th>`
+                responseKeys.forEach( key => {  html += ` <th> ${ key } </th>`})
+
+                html += `</tr>`
+                totalInfoHead.innerHTML = html;  // 1-3 대입
+
+                let totalInfo = document.querySelector('.totalInfo')
+                let html2 = ``
+                // Object.entries : 객체의 {key : value} 형식을 배열 형태의 [key, value] 로 변환하여 준다.
+                Object.entries(r).forEach(([key, value]) => {   // JavaScript 객체의 키와 값을 쌍으로 포함하는 배열을 반환합니다.
+                    // console.log(`${key}: ${value}`);
+                    // 인덱스가 문자로 들어가서 숫자로변환 후 0부터 시작하기 때문에 1 더해주기
+                    html2 += `<tr>
+                                <th> ${Number(key)+1} </th>
+                            `
+                    Object.entries(value).forEach(([key2, value2]) => {   // JavaScript 객체의 키와 값을 쌍으로 포함하는 배열을 반환합니다.
+                    // console.log(`${key2}: ${value2}`);
+                    // console.log(`${value2}`);
+                    html2 += `
+                              <td> ${value2} </td>`;
+
+                    });
+
+                    html2 += `</tr>`;
+                });
+
+                totalInfo.innerHTML = html2;
+            }
+        })  // ajax end
+
+        // 전체기술통계
+        $.ajax({
+            async : false ,
+            method : 'get' ,
+            url : "http://localhost:5000/describe" ,
+            success : (r) => {
+                // console.log(r)
+                1.
+                let deHead = document.querySelector('.deHead') // 1-1 테이블 제목
+                // console.log(deHead)
+                     // 1-2 제목 구성
+                // console.log(r)
+                let responseKeys = Object.keys( r['25%'])
+                console.log(responseKeys)
+
+                // let response = Object( r['25%'])
+                // console.log(response)
+
+                let html = `<tr> <th> </th>`
+                responseKeys.forEach( key => {  html += ` <th> ${ key } </th>`})
+
+                html += `</tr>`
+                deHead.innerHTML = html;  // 1-3 대입
+
+                let describeBox = document.querySelector('.describeBox')
+                let html2 = ``
+                // Object.entries : 객체의 {key : value} 형식을 배열 형태의 [key, value] 로 변환하여 준다.
+                Object.entries(r).forEach(([key, value]) => {   // JavaScript 객체의 키와 값을 쌍으로 포함하는 배열을 반환합니다.
+                    // console.log(`${key}: ${value}`);
+                    html2 += `<tr>
+                                <th> ${key} </th>
+                            `
+                    Object.entries(value).forEach(([key2, value2]) => {   // JavaScript 객체의 키와 값을 쌍으로 포함하는 배열을 반환합니다.
+                    // console.log(`${key2}: ${value2}`);
+                    // console.log(`${value2}`);
+                    html2 += `
+                              <td> ${value2} </td>`;
+
+                    });
+
+                    html2 += `</tr>`;
+                });
+
+                describeBox.innerHTML = html2;
+            }
+        })  // ajax end
+
+        // 시간대별 총 인구수 기술통계
+        $.ajax({
+            async : false ,
+            method : 'get' ,
+            url : "http://localhost:5000/timedescribe" ,
+            success : (r) => {
+                // console.log(r)
+                1.
+                let timeHead = document.querySelector('.timeHead') // 1-1 테이블 제목
+                // console.log(deHead)
+                     // 1-2 제목 구성
+                // console.log(r)
+                let responseKeys = Object.keys( r['25%'])
+                // console.log(responseKeys)
+
+                // let response = Object( r['25%'])
+                // console.log(response)
+
+                let html = `<tr> <th> </th>`
+                responseKeys.forEach( key => {  html += ` <th> ${ key } </th>`})
+
+                html += `</tr>`
+                timeHead.innerHTML = html;  // 1-3 대입
+
+                let timedescribeBox = document.querySelector('.timedescribeBox')
+                let html2 = ``
+                // Object.entries : 객체의 {key : value} 형식을 배열 형태의 [key, value] 로 변환하여 준다.
+                Object.entries(r).forEach(([key, value]) => {   // JavaScript 객체의 키와 값을 쌍으로 포함하는 배열을 반환합니다.
+                    // console.log(`${key}: ${value}`);
+                    html2 += `<tr>
+                                <th> ${key} </th>
+                            `
+                    Object.entries(value).forEach(([key2, value2]) => {   // JavaScript 객체의 키와 값을 쌍으로 포함하는 배열을 반환합니다.
+                    // console.log(`${key2}: ${value2}`);
+                    // console.log(`${value2}`);
+                    html2 += `
+                              <td> ${value2} </td>`;
+
+                    });
+
+                    html2 += `</tr>`;
+                });
+
+                timedescribeBox.innerHTML = html2;
+            }
+
+        })  // ajax end
+
+         // 시간대별 가장 인구수 많은 행정동 코드
+         $.ajax({
+            async : false ,
+            method : 'get' ,
+            url : "http://localhost:5000/highestpopulation" ,
+            success : (r) => {
+                // console.log(r)
+
+                let highestpopulationBox = document.querySelector('.highestpopulationBox')
+                let html2 = ``
+                Object.entries(r).forEach(([key , value]) => {
+                    //console.log(`${key}: ${value}`)
+                    Object.entries(value).forEach(([key2 , value2]) => {
+                        html2 += `<tr>
+                                <th>${value2.시간대구분}</th> <td>${value2.행정동코드}</td> <td>${value2.총생활인구수}</td>
+                            </tr>
+                            `
+                    })
+
+                });
+
+                highestpopulationBox.innerHTML = html2;
+            }
+
+        })  // ajax end
+
+        // 행정동코드별 남여 인구수
+         $.ajax({
+            async : false ,
+            method : 'get' ,
+            url : "http://localhost:5000/codemalefemale" ,
+            success : (r) => {
+                console.log(r)
+
+                let male_female = document.querySelector('.male_female')
+                let html2 = ``
+                Object.entries(r).forEach(([key , value]) => {
+                    console.log(`${key}: ${value}`)
+                    html2 += `<tr>`
+                    html2 += `<th>${key}</th><td>${value[0]}</td><td>${value[1]}</td><td>${value[0]+value[1]}</td>`
+                    html2 += `</tr>`
+                });
+                male_female.innerHTML = html2;
+            }
+        })  // ajax end
+
+    </script>
 </body>
 </html>
