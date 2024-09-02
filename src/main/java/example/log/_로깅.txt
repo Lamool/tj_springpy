@@ -1,0 +1,35 @@
+[1] 로깅
+    - 로그 를 남기는 작업
+    - 로그란? 컴퓨터가 처리한 기록
+    - 기록을 보고 유지보수( 문제 확인/해결/분석 )
+    - 스프링 로깅 어노테이션
+        1. @Log4j2 : 사용할 클래스 위에 로깅 어노테이션 작성
+
+    - application.properties 설정
+        1. 로깅할 파일명 경로
+            logging.file.name = (src폴더부터)log파일경로     # logging.file.name = src/main/resources/logging.log
+        2. 로깅 레벨의 루트
+            1. logging.level.root = debug   ( debug , info , warn , error )
+            2. logging.level.root = info    ( info , warn , error )
+            3. logging.level.root = warn    ( warn , error )
+            3. logging.level.root = error   ( error )
+        3. 로깅 레벨의 특정 루트
+            1. logging.level.패키지경로          # logging.level.(java폴더이하)패키지명경로 ( *패키지내 전체 클래스 )
+            2. logging.level.특정클래스경로       # logging.level.(java폴더이하)클래스경로 ( *특정 클래스 )
+
+    - 로깅 레벨 : 적절한 상황에 따라 로깅 레벨를 선택하여 기록하기.
+        1. debug : 개발 환경에서 사용 , 상세 정보
+        2. info : 운영 환경에서 사용 , 동작 정보
+        3. warn : 운영 환경에서 사용 , 경고 정보
+        4. error : 운영 환경에서 사용 , 예외 정보 , 심각한 오류
+        5. fatal : 운영 환경에서 사용 , 치명적인 오류(시스템)
+
+    - 로깅 메소드
+        1. log.debug("로그 내용");
+        2. log.info("로그 내용");
+        3. log.warn("로그 내용");
+        4. log.error("로그 내용");
+
+    - print 와 로깅 차이점
+        1. print 단순한 출력용 메소드 이고 일반적으로 운영 환경에서는 사용하지 않는다. ( 주로 테스트 환경 )
+        2. log 로깅 라이브러리는 다양한 로그 레벨 과 형식 를 제공 한다. ( 주로 운영 환경 )

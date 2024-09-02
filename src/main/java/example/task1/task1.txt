@@ -1,0 +1,22 @@
+Task1 : SpringBoot , mybatis , logging 이용한 가계부 구현
+    - 작업폴더 : src/main/java/example/task1
+        -AccountController( 클래스 )
+        -AccountService ( 클래스 )
+        -AccountDao( 인터페이스 )
+        -AccountDto( 클래스 )
+
+    - sql폴더 : resource/ schema.sql , data.sql
+        -account 테이블 속성 : 식별번호 , 설명 , 금액 , 날짜
+        -샘플 5개 이상
+
+    - XML폴더 : resource/mybatis/mappers/accountMapper.xml
+        - 등록 , 전체출력, 수정, 삭제 SQL 매핑
+
+    - html폴더 : resource/static/index8.html
+        - 등록 , 전체출력 , 수정 , 삭제 화면 구현
+        1. 설명,금액,날짜를 입력받아 등록 처리 합니다.
+        2. 등록된 모든 정보를 출력합니다.
+        3. 선택된 정보의 새로운 설명,수정,날짜를 입력받아 수정 처리 합니다.
+        4. 선택된 정보를 삭제합니다.
+
+    - AccountService에서 등록/수정/삭제 성공시 info레벨 logging (000 success) 처리하기

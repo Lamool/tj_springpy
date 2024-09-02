@@ -1,0 +1,61 @@
+한글 깨져서
+application.properties
+
+########## [1] Spring JDBC ##########
+# 1. jdbc url
+spring.datasource.url=jdbc:mysql://localhost:3306/springpy
+# 2. jdbc username
+spring.datasource.username=root
+# 3. jdbc user password
+spring.datasource.password=1234
+# 4. DDL, DML ???? ???
+# schema.sql, data.sql
+# 스프링 실행할 때마다 schema.sql, data.sql에 작성된 SQL로 초기화를 한다.
+spring.sql.init.mod = always
+# 스프링 실행할 때마다 SQL 절대로 초기화 하지 않는다.
+#spring.sql.init.mod = never
+
+########## [2] myBatis ##########
+# 1. XML file path : ??? (??) ??
+mybatis.mapper-locations = classpath:mybatis/mappers/*.xml
+
+
+
+
+
+
+########### [1] Spring JDBC ###########
+# 1. jdbc url
+spring.datasource.url=jdbc:mysql://localhost:3306/springpy
+# 2. jdbc user name
+spring.datasource.username=root
+# 3. jdbc user password
+spring.datasource.password=1234
+
+# 4. DDL , DML
+# 스프링 실행 할때마다  schema.sql , data.sql 에 작성된 SQL 로 초기화를 한다. (작업용)
+spring.sql.init.mode=always
+# 스프링 실행 할때마다  SQL 절대로 초기화 하지 않는다.
+# spring.sql.init.mode = never
+
+########### [2] myBatis ###########
+# 1. XML file path
+mybatis.mapper-locations = classpath:mybatis/mappers/*.xml
+
+########### [3] logging ###########
+# 1. logging file
+logging.file.name = src/main/resources/logging.log
+
+# 2. logging level root ( debug < info < warn < error 순 )
+    # info < warn < error
+logging.level.root = info
+    # warn < error
+# logging.level.root = warn
+
+# 3. logging level package
+    # spring web 관련해서는 error 만 로깅
+logging.level.org.springframework.web = error
+    # 특정한 패키지 에서만 로깅
+logging.level.example.log.service = error
+logging.level.example.log.LogService = error
+

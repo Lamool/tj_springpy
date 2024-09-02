@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="example.task1.AccountDao">    <!-- mapper start -->
+<!-- namespace="매핑할 인터페이스 경로(위치)" -->
+
+    <!-- [C] 1. 등록 -->
+    <insert id="listAdd" parameterType="example.task1.AccountDto">
+        insert into account(explanation, price, date) values(#{explanation}, #{price}, #{date});
+    </insert>
+
+    <!-- [R] 2. 전체 출력 -->
+    <select id="printAll" resultType="example.task1.AccountDto">
+        select * from account;
+    </select>
+
+    <!-- [U] 3. 수정 -->
+    <update id="modify" parameterType="example.task1.AccountDto">
+        update account
+        set explanation = #{explanation}, price = #{price}, date = #{date}
+        where num = #{num}
+    </update>
+
+    <!--  -->
+    <delete>
+
+    </delete>
+
+</mapper>   <!-- mapper end -->
