@@ -37,7 +37,7 @@ public class AccountController {
 
     // [D] 4. 삭제
     @DeleteMapping("remove")
-    public boolean remove(int num) {
+    public boolean remove(int num) {            // ((여러 개 삭제면 int가 맞다 반환 타입))
         System.out.println("AccountController.remove");
         System.out.println("num = " + num);
         return accountService.remove(num);

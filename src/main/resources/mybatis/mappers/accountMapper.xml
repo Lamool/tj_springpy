@@ -3,8 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- 1. 매핑할 인터페이스명 정의 # namespace=경로(java폴더 아래부터) -->
 <mapper namespace="example.task1.AccountDao">    <!-- mapper start -->
-<!-- namespace="매핑할 인터페이스 경로(위치)" -->
 
     <!-- [C] 1. 등록 -->
     <insert id="listAdd" parameterType="example.task1.AccountDto">
@@ -23,9 +23,9 @@
         where num = #{num}
     </update>
 
-    <!--  -->
-    <delete>
-
+    <!-- [D] 4. 삭제 -->
+    <delete id="remove" parameterType="int">
+        delete from account where num = #{num}
     </delete>
 
 </mapper>   <!-- mapper end -->
