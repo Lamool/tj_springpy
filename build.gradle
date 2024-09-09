@@ -23,6 +23,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok' // 롬복
     runtimeOnly 'com.mysql:mysql-connector-j' // mysql jdbc
     annotationProcessor 'org.projectlombok:lombok' // 롬복
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'     // 타임리프
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'     // 웹소켓
 }
 
 tasks.named('test') {
