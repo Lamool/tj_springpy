@@ -29,19 +29,38 @@
 
 [2] '서버소켓' 구현 # JAVA(SPRING)
     1. 스프링에서 '서버소켓' 구현하는 방법
-        1. '웹소켓' 라이브러리 디펜더시 추가 :
+        1. '웹소켓' 라이브러리 디펜더시 추가 : implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
-    2. 서버소켓 핸들러 (컨트롤러) 설정하기
-        1.
-        2.
-        3. registerWebSocketHandlers 메소드 구현
-            - registry.addHandler("핸들러객체", "ws서버소켓주소정의");
-        4. 웹서버소켓의 핸들러/컨트롤러 만들기
-            - ChatController 클래스 만들기
-            - extends TextWebSocketHandler 클래스 상속
+        2. 서버소켓 핸들러 (컨트롤러) 설정하기
+            1. 클래스 만들기 ((패키지와 클래스 이름은 중요치 않다))
+            2. 인터페이스 구현 implements WebSocketConfigurer
+            3. registerWebSocketHandlers 메소드 구현
+                - registry.addHandler("핸들러객체", "ws서버소켓주소정의");
+            4. 웹서버소켓의 핸들러/컨트롤러 만들기
+                - ChatController 클래스 만들기
+                - extends TextWebSocketHandler 클래스 상속
+                1. 클라이언트가 서버 소켓과 접속 요청이 성공 했을 때
+                    afterConnectionEstablished 메소드 실행
+                2. 클라이언트가 서버 소켓과 접속이 끊겼을 때
+                    afterConnectionClosed 메소드 실행
 
 
 [3] '클라이언트소켓' 구현 # JS
+    1. JS에서  '클라이언트소켓' 구현 하는 방법
+        WebSocket 클래스 이용한 클라이언트 소켓 구현
+        1. 클라이언트 소켓 생성
+        new WebSocket("서버소켓의URL")
+
+((
+JS 코드는 하나가 맞고
+브라우저 페이지 여러 개를 키면 JS가 여러 개, 그래서 웹소켓 여러 개
+똑같은 브라우저더라도 페이지마다 따로 스크립트를 사용하는
+서버는 1개
+
+new WebSocket("ws://localhost:8080/chat/conn")
+접속 연결을 한 게 객체 생성
+브라우저를 닫거나 페이지 이동 시 접속 끊어짐
+))
 
 
 
