@@ -33,7 +33,7 @@
 
         2. 서버소켓 핸들러 (컨트롤러) 설정하기
             1. 클래스 만들기 ((패키지와 클래스 이름은 중요치 않다))
-            2. 인터페이스 구현 implements WebSocketConfigurer
+            2. implements WebSocketConfigurer 인터페이스 구현 ((# spring boot 3.x # 버전에 따라 다르다))
             3. registerWebSocketHandlers 메소드 구현
                 - registry.addHandler("핸들러객체", "ws서버소켓주소정의");
             4. 웹서버소켓의 핸들러/컨트롤러 만들기
@@ -62,5 +62,11 @@ new WebSocket("ws://localhost:8080/chat/conn")
 브라우저를 닫거나 페이지 이동 시 접속 끊어짐
 ))
 
+((
+채팅을 보낸다고 하면
+그 사람한테 바로 보내는 게 아니라
+서버에 보내는 것이고
 
+
+))
 
