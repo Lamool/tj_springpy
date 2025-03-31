@@ -47,27 +47,22 @@
                 <DML> </DML>
             </mapper>
 
-            2-2. 연동한 인터페이스의 추상메소드 매핑
-            <DML id="매핑할추상메소드" parameterType="매개변수", resultType="반환타입">
-            </DML>
+            2-2 : 연동한 인터페이스의 추상메소드 매핑
+            <DML id="매핑할추상메소드", parameterType="매개변수타입", resultType="반환타입"> </DML>
+                * parameterType, resultType : 일반적으로 1개의 타입만 가능하다. 다양한 타입 : Map, Dto
 
             * 각 DML 제공
-            - insert
-                <insert>
-                    insert문
-                </insert>
+            - insert  * 기본 반환타입 : int(레코드 등록 개수)
+                <insert>  insert문   </insert>
 
-                <select>
-                    select문
-                </select>
+            - select
+                <select>   select문   </select>
 
-                <delete>
-                    delete문
-                </delete>
+            - update * 기본 반환타입 : int(레코드 수정 개수)
+                <update>    update문  </update>
 
-                <update>
-                    update문
-                </update>
+            - delete * 기본 반환타입 : int(레코드 삭제 개수)
+                <delete>    delete문   </delete>
 
 
 
